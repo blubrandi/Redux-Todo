@@ -1,15 +1,17 @@
-export const ADD_TODO = 'ADD_TODO'
-export const addTodo = todo => {
-    return {
-        type: ADD_TODO,
-        payload: todo
-    }
-}
+export const ADD_TODO = 'ADD_TODO';
+export const COMPLETE_TODO = 'COMPLETE_TODO';
+// export const REMOVE_TODO = 'REMOVE_TODO';
 
-// export const CLEAR_TODO = 'CLEAR_TODO'
-// export function clearTodo() {
-//     return {
-//         type: CLEAR_TODO,
-//         payload: clearTodo
-//     }
-// }
+export const addTodo = todo => {
+  return {
+    type: ADD_TODO,
+    payload: todo
+  };
+};
+
+export const completeTodo = todoId => {
+    return { 
+        type: COMPLETE_TODO, 
+        payload: todoId 
+    };
+  }

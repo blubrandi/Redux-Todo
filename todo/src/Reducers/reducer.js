@@ -1,25 +1,36 @@
-import { ADD_TODO, } from '../Actions'
+import { ADD_TODO, COMPLETE_TODO } from '../Actions'
 
 const initialState = {
-    title: 'My ToDo List',
-    todos: []
-}
-
-
-function reducer(state = initialState, action) {
-    switch(action.type) {
-            case ADD_TODO:
-            return {
-                ...state,
-                todoItem: []
-            }
-        // case CLEAR_TODO:
-        //     return {
-        //         ...state,
-        //     }
-        default:
-            return state;
+    todos: [
+    {    
+        text: 'Finish Redux Todo',
+        comlpleted: false,
+        id: 0
     }
+]
 }
 
-export default reducer
+
+export const todosReducer = (state = initialState, action) => {
+    switch (action.type) {
+      case ADD_TODO:
+        return Object.assign({}, state, {
+          todos: [...state.todos, action.payload]
+        });
+      case COMPLETE_TODO:
+        const id = action.payload;
+        const todos = state.todos.map(todo => {
+          if (todo.id === id) {
+            todo.completed = !todo.completed;
+            return todo;
+          } else {
+            return todo;
+          }
+        });
+        return Object.assign({}, state, { todos: todos });
+      default:
+        return state;
+    }
+  }
+
+export default todosReducer
